@@ -19,10 +19,15 @@ pipeline {
         }
 
         stage('Packaging/Pushing imagae') {
+
             steps {
+                script {
+                tag = "v${BUILD_NUMBER}"  
+                }   
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker build -t huy21it490/chatservice:latest .'
-                    sh 'docker push huy21it490/chatservice:latest'
+                    sh 'docker build -t huy21it490/chatservice:${tag} .'
+                    sh 'docker push huy21it490/chatservice:${tag}'
+                    sh 'docker rmi huy21it490/chatservice:${tag}'
                 }
             }
         }
@@ -34,7 +39,7 @@ pipeline {
                     sh "pwd"
                     sh "ls"
                     sh "cp \$KUBECONFIG ~/.kube/config"
-                    sh "kubectl apply -f deloyment.yaml"
+                    sh "kubectl apply -f deloyment.yaml --set=VERSION=${tag}"
                 }
             }
         }
