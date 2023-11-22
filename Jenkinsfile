@@ -33,7 +33,7 @@ pipeline {
                     sh "cat \$KUBECONFIG"
                     sh "pwd"
                     sh "ls"
-                    sh "cp \$KUBECONFIG /.kube/config"
+                    sh "cp \$KUBECONFIG ~/.kube/config"
                     sh "kubectl apply deloyment.yaml"
                 }
             }
