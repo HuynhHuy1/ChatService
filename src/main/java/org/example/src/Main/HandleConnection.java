@@ -32,7 +32,7 @@ public class HandleConnection implements Runnable {
         try {
             Scanner sc = new Scanner(socket.getInputStream());
             String method = sc.nextLine();
-            System.out.println(method);
+            System.out.println(method + "hehe");
             switch (method) {
                 case "getListUser": {
                     int id = sc.nextInt();
