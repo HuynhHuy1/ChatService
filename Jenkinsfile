@@ -29,8 +29,11 @@ pipeline {
 
         stage('Deploy Spring Boot to DEV') {
             steps {
-                echo 'Deploying and cleaning'
-                sh 'kubectl apply -f deloyment.yaml' 
+                withCredentials([file(credentialsId: 'kubectl', variable: 'KUBECONFIG')]) {
+                    sh "cat \$KUBECONFIG"
+                    sh "cp \$KUBECONFIG /.kube/config"
+                    sh "kubectl apply deloyment.yaml"
+                }
             }
         }
     }
