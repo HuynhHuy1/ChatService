@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chatservicedb
+  namespace: devops-tools
 spec:
   selector:
     matchLabels:
@@ -31,6 +32,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata: 
   name: app
+  namespace: devops-tools
+
 spec:
   selector:
     matchLabels:
