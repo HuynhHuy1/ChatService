@@ -19,9 +19,6 @@ pipeline {
         }
 
         stage('Packaging/Pushing imagae') {
-            script {
-                tag = "v${BUILD_NUMBER}"  
-                }
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
                     sh 'docker build -t huy21it490/chatservice:latest .'
