@@ -46,6 +46,7 @@ spec:
     spec:
       containers:
       - name: chatservice
-        image: huy21it490/chatservice:${VERSION}
+        image: huy21it490/chatservice:latest
+        imagePullPolicy: Always
         ports:
           - containerPort: 12345
