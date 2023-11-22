@@ -37,7 +37,7 @@ pipeline {
                     sh "pwd"
                     sh "ls"
                     sh "cp \$KUBECONFIG ~/.kube/config"
-                    sh "kubectl rollout restart deployment.yaml"
+                    sh "kubectl rollout restart deployment app"
                 }
             }
         }
