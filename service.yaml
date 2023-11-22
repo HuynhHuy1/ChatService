@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp
+spec:
+  selector:
+    app: my-app
+  ports:
+  - protocol: TCP
+    port: 80       # Port trên dịch vụ (external port)
+    targetPort: 12345  # Port trên các pod (internal port)
+    nodePort: 30002   # NodePort (30000-32767)
+  type: NodePort     # Kiểu dịch vụ là NodePort
+
+--- #service database
+apiVersion: v1
+kind: Service
+metadata:
+  name: chatservicedb
+spec:
+  selector:
+    app: chat-service-mysql
+  ports:
+    - port: 3306
+  type: ClusterIP

@@ -1,0 +1,39 @@
+version: '3'
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: huy21it490/ChatService
+    working_dir: /app
+    tty: true
+    ports: 
+      - "12345:12345"
+    environment:
+      DB_HOST: database
+      DB_DATABASE: mailserver
+      DB_USERNAME: root
+      DB_PASSWORD: root
+
+    networks: 
+      - ChatService
+    depends_on: 
+      - database
+  database:
+    image: 'mysql:8.0'
+    container_name: huy21it490/DBChatService
+    restart: always
+    volumes:
+      - ./ChatService.sql:/docker-entrypoint-initdb.d/ChatService.sql
+    # ports: 
+    #   - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ChatService
+      MYSQL_ROOT_PASSWORD: root
+    networks: 
+      - ChatService
+networks:
+  ChatService:
+      driver: bridge
+      name: ChatService
+

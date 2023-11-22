@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"path": "../../../../.."
+		},
+		{
+			"path": "../../../../../../../../../Downloads/LoginSocket"
+		},
+		{
+			"path": "../../../../../../../../../Downloads/Client (1)"
+		},
+		{
+			"path": "../../../../../../../rmi"
+		},
+		{
+			"path": "../../../../../../../MailServer"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.debug.settings.onBuildFailureProceed": true,
+		"java.project.sourcePaths": [
+			"src/main/java/org/example/src/rmi",
+			"src/main/java/org/example/src/Main"
+		]
+	}
+}

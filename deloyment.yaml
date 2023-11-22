@@ -1,0 +1,49 @@
+# Database Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatservicedb
+spec:
+  selector:
+    matchLabels:
+      app: chat-service-mysql
+  template:
+    metadata:
+      labels:
+        app: chat-service-mysql
+        name: chatservice
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0
+        env:
+        - name: MYSQL_DATABASE
+          value: ChatService
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        ports:
+        - containerPort: 3306
+
+---
+
+# App Deployment 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      name : chatservice
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: chatservice
+        image: huy21it490/chatservice:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 12345
