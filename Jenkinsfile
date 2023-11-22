@@ -31,6 +31,8 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'kubectl', variable: 'KUBECONFIG')]) {
                     sh "cat \$KUBECONFIG"
+                    sh "pwd"
+                    sh "ls"
                     sh "cp \$KUBECONFIG /.kube/config"
                     sh "kubectl apply deloyment.yaml"
                 }
