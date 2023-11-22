@@ -34,7 +34,7 @@ pipeline {
                     sh "pwd"
                     sh "ls"
                     sh "cp \$KUBECONFIG ~/.kube/config"
-                    sh "kubectl apply deloyment.yaml"
+                    sh "kubectl apply -f deloyment.yaml"
                 }
             }
         }
