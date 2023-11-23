@@ -30,14 +30,14 @@ public class ConversationController {
 
     public void getListConversation(int id) {
         try {
-            // System.setProperty("sun.rmi.transport.tcp.responseTimeout", "5000");
-            // RMIServiceInterface iAccount = (RMIServiceInterface) Naming.lookup("rmi://192.168.112.3:1099/RMIService");
-            // List<Integer> listUserId = ConversationRepository.getConversations(id);
+            System.setProperty("sun.rmi.transport.tcp.responseTimeout", "5000");
+            RMIServiceInterface iAccount = (RMIServiceInterface) Naming.lookup("rmi://34.143.232.173:30005/RMIService");
+            List<Integer> listUserId = ConversationRepository.getConversations(id);
             out = new ObjectOutputStream(socket.getOutputStream());
-            // List<User> listUser = iAccount.getListUserByListId(listUserId);
-            List<User> listUser = new ArrayList<>();
-            listUser.add(new User(id, userReceiver, userReceiver, userReceiver, userReceiver, null));
-            listUser.add(new User(id, userReceiver, userReceiver, userReceiver, userReceiver, null));
+            List<User> listUser = iAccount.getListUserByListId(listUserId);
+            // List<User> listUser = new ArrayList<>();
+            // listUser.add(new User(id, userReceiver, userReceiver, userReceiver, userReceiver, null));
+            // listUser.add(new User(id, userReceiver, userReceiver, userReceiver, userReceiver, null));
             System.out.println(listUser.size());
             out.writeObject(listUser);
         } catch (java.rmi.ConnectException e) {

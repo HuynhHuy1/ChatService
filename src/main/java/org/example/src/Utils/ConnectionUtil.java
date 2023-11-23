@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionUtil {
     public static Connection getConnection() {
         // String url = "jdbc:mysql://localhost:3306" + "/" + "ChatService";
-        String url = "jdbc:mysql://chatservicedb.default.svc.cluster.local:3306" + "/" + "ChatService";
+        String url = "jdbc:mysql://chatservicedb.devops-tools.svc.cluster.local:3306" + "/" + "ChatService";
 
         System.out.println(url);
         String username = "root";

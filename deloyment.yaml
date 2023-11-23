@@ -24,6 +24,13 @@ spec:
           value: root
         ports:
         - containerPort: 3306
+        volumeMounts:
+          - name: mysql-chatservice
+            mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: mysql-chatservice
+        configMap:
+          name: chatservice-db
 
 ---
 
