@@ -32,6 +32,7 @@ public class ConversationController {
         try {
             System.setProperty("sun.rmi.transport.tcp.responseTimeout", "5000");
             RMIServiceInterface iAccount = (RMIServiceInterface) Naming.lookup("rmi://34.143.232.173:30005/RMIService");
+            System.out.println(iAccount);
             List<Integer> listUserId = ConversationRepository.getConversations(id);
             out = new ObjectOutputStream(socket.getOutputStream());
             List<User> listUser = iAccount.getListUserByListId(listUserId);
