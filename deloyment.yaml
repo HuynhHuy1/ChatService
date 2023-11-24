@@ -1,29 +1,93 @@
-# Database Deployment
+# # Database Deployment
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: chatservicedb
+#   namespace: devops-tools
+# spec:
+#   selector:
+#     matchLabels:
+#       app: chat-service-mysql
+#   template:
+#     metadata:
+#       labels:
+#         app: chat-service-mysql
+#         name: chatservice
+#     spec:
+#       containers:
+#       - name: mysql
+#         image: mysql:8.0
+#         env:
+#         - name: MYSQL_DATABASE
+#           value: ChatService
+#         - name: MYSQL_ROOT_PASSWORD
+#           value: root
+#         ports:
+#         - containerPort: 3306
+#         volumeMounts:
+#           - name: mysql-chatservice
+#             mountPath: /docker-entrypoint-initdb.d
+#       volumes:
+#       - name: mysql-chatservice
+#         configMap:
+#           name: chatservice-db
+
+# ---
+
+# # App Deployment 
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata: 
+#   name: app
+#   namespace: devops-tools
+
+# spec:
+#   selector:
+#     matchLabels:
+#       app: my-app
+#   template:
+#     metadata:
+#       name : chatservice
+#       labels:
+#         app: my-app
+#     spec:
+#       containers:
+#       - name: chatservice
+#         image: huy21it490/chatservice:latest
+#         imagePullPolicy: Always
+#         ports:
+#           - containerPort: 12345
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chatservicedb
+  name: app-and-db
   namespace: devops-tools
 spec:
   selector:
     matchLabels:
-      app: chat-service-mysql
+      app: my-app
   template:
     metadata:
       labels:
-        app: chat-service-mysql
-        name: chatservice
+        app: my-chatservice
     spec:
       containers:
-      - name: mysql
+      - name: app-container
+        image: huy21it490/chatservice:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 12345
+      - name: db-container
         image: mysql:8.0
         env:
-        - name: MYSQL_DATABASE
-          value: ChatService
-        - name: MYSQL_ROOT_PASSWORD
-          value: root
+          - name: MYSQL_DATABASE
+            value: ChatService
+          - name: MYSQL_ROOT_PASSWORD
+            value: root
         ports:
-        - containerPort: 3306
+          - containerPort: 3306
         volumeMounts:
           - name: mysql-chatservice
             mountPath: /docker-entrypoint-initdb.d
@@ -31,29 +95,3 @@ spec:
       - name: mysql-chatservice
         configMap:
           name: chatservice-db
-
----
-
-# App Deployment 
-apiVersion: apps/v1
-kind: Deployment
-metadata: 
-  name: app
-  namespace: devops-tools
-
-spec:
-  selector:
-    matchLabels:
-      app: my-app
-  template:
-    metadata:
-      name : chatservice
-      labels:
-        app: my-app
-    spec:
-      containers:
-      - name: chatservice
-        image: huy21it490/chatservice:latest
-        imagePullPolicy: Always
-        ports:
-          - containerPort: 12345

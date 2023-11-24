@@ -5,7 +5,7 @@ metadata:
   namespace: devops-tools
 spec:
   selector:
-    app: my-app
+    app: my-chatservice
   ports:
   - protocol: TCP
     port: 80       # Port trên dịch vụ (external port)

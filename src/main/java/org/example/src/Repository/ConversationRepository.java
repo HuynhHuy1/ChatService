@@ -43,7 +43,6 @@ public class ConversationRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 conversationId = resultSet.getInt("id");
-                System.out.println("hello" + conversationId);
             }
             return conversationId;
         } catch (SQLException e) {
