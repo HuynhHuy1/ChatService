@@ -1,11 +1,14 @@
 package org.example.src.Controller;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,9 +57,14 @@ public class ChatController {
         System.out.println(conversationId);
         MessageRepository.addNewMessage(conversationId, userLogin,content);
         try {
+            List<String> urlServer = new ArrayList<>();
+            urlServer.add("34.143.232.173");
+            urlServer.add("34.87.171.195");
+            InetAddress localhost = InetAddress.getLocalHost();
+            System.out.println("IP của máy chủ: " + localhost.getHostAddress());
             RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming.lookup("rmi://192.168.1.132:3099/ChatService");
             rmiChatService.updateChatRemote(userLogin, userReceiver, content);
-        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+        } catch (MalformedURLException | RemoteException | NotBoundException | UnknownHostException e) {
             e.printStackTrace();
         }
     }

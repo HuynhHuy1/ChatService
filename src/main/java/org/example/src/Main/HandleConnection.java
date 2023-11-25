@@ -54,7 +54,7 @@ public class HandleConnection implements Runnable {
                     int userLogin = sc.nextInt();
                     int userReceiver = sc.nextInt();
                     sc.nextLine();
-                    String message = sc.nextLine();                    
+                    String message = sc.nextLine();
                     ChatController chatController = new ChatController();
                     System.out.println(userLogin + "     " + userReceiver + "    " + message);
                     chatController.addMessage(userLogin, userReceiver, message);
