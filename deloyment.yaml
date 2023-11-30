@@ -3,7 +3,7 @@
 # kind: Deployment
 # metadata:
 #   name: chatservicedb
-#   namespace: devops-tools
+#   namespace: chat-app
 # spec:
 #   selector:
 #     matchLabels:
@@ -39,7 +39,7 @@
 # kind: Deployment
 # metadata: 
 #   name: app
-#   namespace: devops-tools
+#   namespace: chat-app
 
 # spec:
 #   selector:
@@ -63,7 +63,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-and-db
-  namespace: devops-tools
+  namespace: chat-app
 spec:
   replicas: 1
   selector:
@@ -103,7 +103,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-and-db-2
-  namespace: devops-tools
+  namespace: chat-app
 spec:
   replicas: 1
   selector:

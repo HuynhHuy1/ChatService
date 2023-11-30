@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     tools { 
-        maven 'my-maven' 
+        maven 'maven-tool' 
     }
     // environment {
     //     MYSQL_ROOT_LOGIN = credentials('dockerhub')

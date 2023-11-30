@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../LoginSocket1"
+		},
+		{
+			"path": "../../../../Downloads/DoAnMonHoc/Client"
+		},
+		{
+			"path": "../../../DevOps/Kubernetes"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.debug.settings.onBuildFailureProceed": true
+	}
+}
