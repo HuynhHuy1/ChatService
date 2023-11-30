@@ -21,7 +21,6 @@ pipeline {
         stage('Packaging/Pushing imagae') {
 
             steps {
-
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
                     sh 'docker build -t huy21it490/chatservice:latest .'
                     sh 'docker push huy21it490/chatservice:latest'
@@ -33,6 +32,7 @@ pipeline {
         stage('Deploy Spring Boot to DEV') {
             steps {
                 withCredentials([file(credentialsId: 'kubectl', variable: 'KUBECONFIG')]) {
+                    sh "cd /"
                     sh "cat \$KUBECONFIG"
                     sh "pwd"
                     sh "ls"
