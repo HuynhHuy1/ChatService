@@ -31,6 +31,7 @@ pipeline {
 
         stage('Deploy Spring Boot to DEV') {
             steps {
+                    sh "kubectl create ns test"
                     sh "kubectl rollout restart deployment app-and-db"
                     sh "kubectl rollout restart deployment app-and-db-2"
             }
