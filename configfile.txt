@@ -22,22 +22,6 @@ current-context: gke_plexiform-ion-404717_us-central1-c_cluster-1
 kind: Config
 preferences: {}
 users:
-- name: default
-  user:
-    client-certificate-data: DATA+OMITTED
-    client-key-data: DATA+OMITTED
-- name: gke_plexiform-ion-404717_asia-east1_demo-cluster
-  user:
-    exec:
-      apiVersion: client.authentication.k8s.io/v1beta1
-      args: null
-      command: /opt/homebrew/share/google-cloud-sdk/bin/gke-gcloud-auth-plugin
-      env: null
-      installHint: Install gke-gcloud-auth-plugin for use with kubectl by following
-        https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
-      interactiveMode: IfAvailable
-      provideClusterInfo: true
-- name: gke_plexiform-ion-404717_us-central1-c_cluster-1
   user:
     exec:
       apiVersion: client.authentication.k8s.io/v1beta1
