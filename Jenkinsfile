@@ -31,10 +31,8 @@ pipeline {
 
         stage('Deploy Spring Boot to DEV') {
             steps {
-                withCredentials([file(credentialsId: 'kubectl', variable: 'KUBECONFIG')]) {
                     sh "kubectl rollout restart deployment app-and-db"
                     sh "kubectl rollout restart deployment app-and-db-2"
-                }
             }
         }
     }
