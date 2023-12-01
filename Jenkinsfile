@@ -31,10 +31,10 @@ pipeline {
 
         stage('Deploy Spring Boot to DEV') {
             steps {
-                    sh "kubectl ls -la"
+                    sh "ls -la"
                     sh "kubectl create ns test"
-                    sh "kubectl rollout restart deployment app-and-db"
-                    sh "kubectl rollout restart deployment app-and-db-2"
+                    sh "kubectl rollout restart deployment app-and-db -n chat-app"
+                    sh "kubectl rollout restart deployment app-and-db-2 -n chat-app"
             }
         }
     }
