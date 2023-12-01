@@ -56,7 +56,7 @@ public class Server {
 
 	public void run() throws IOException {
 		server = new ServerSocket(port);
-		System.out.println("Port 12345 is now open.");
+		System.out.println("Port 12345 is now open. Update");
 		while (true) {
 			Socket socketClient = server.accept();
 			new Thread(new HandleConnection(socketClient)).start();
