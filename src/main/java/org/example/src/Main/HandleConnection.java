@@ -37,7 +37,6 @@ public class HandleConnection implements Runnable {
                     int id = sc.nextInt();
                     ConversationController conversationController = new ConversationController(socket);
                     conversationController.getListConversation(id);
-                    socket.close();
                     System.out.println("Close Socket`");
                     break;
                 }
