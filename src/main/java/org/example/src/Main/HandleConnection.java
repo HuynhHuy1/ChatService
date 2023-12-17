@@ -37,6 +37,7 @@ public class HandleConnection implements Runnable {
                     int id = sc.nextInt();
                     ConversationController conversationController = new ConversationController(socket);
                     conversationController.getListConversation(id);
+                    socket.close();
                     System.out.println("Close Socket`");
                     break;
                 }
@@ -45,6 +46,7 @@ public class HandleConnection implements Runnable {
                     int userReceiver = sc.nextInt();
                     ConversationController conversationController = new ConversationController(socket);
                     conversationController.getListMessageByConversationID(userLogin, userReceiver);
+                    socket.close();
                     break;
                 }
                 case "chat": {
