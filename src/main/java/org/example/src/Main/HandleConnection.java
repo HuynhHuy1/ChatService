@@ -46,7 +46,6 @@ public class HandleConnection implements Runnable {
                     int userReceiver = sc.nextInt();
                     ConversationController conversationController = new ConversationController(socket);
                     conversationController.getListMessageByConversationID(userLogin, userReceiver);
-                    socket.close();
                     break;
                 }
                 case "chat": {

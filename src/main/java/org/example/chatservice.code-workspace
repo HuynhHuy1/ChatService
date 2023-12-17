@@ -16,6 +16,7 @@
 		"java.project.sourcePaths": [
 			"src/main/java/org/example/src/rmi",
 			"src/main/java/org/example/src/Main"
-		]
+		],
+		"liveServer.settings.multiRootWorkspaceName": "case-study-main-2"
 	}
 }
