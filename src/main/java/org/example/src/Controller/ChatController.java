@@ -61,7 +61,7 @@ public class ChatController {
             InetAddress localhost = InetAddress.getLocalHost();
             System.out.println("IP của máy chủ 2: " + localhost.getHostAddress());
             RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming
-                    .lookup("rmi://34.42.147.168:30005/ChatService");
+                    .lookup("rmi://34.42.147.168:30010/ChatService");
             rmiChatService.updateChatRemote(userLogin, userReceiver, content);
         } catch (MalformedURLException | RemoteException | NotBoundException | UnknownHostException e) {
             try {
