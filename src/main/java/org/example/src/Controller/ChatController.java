@@ -60,9 +60,15 @@ public class ChatController {
             List<String> urlServer = new ArrayList<>();
             InetAddress localhost = InetAddress.getLocalHost();
             System.out.println("IP của máy chủ 2: " + localhost.getHostAddress());
-            RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming
-                    .lookup("rmi://34.42.147.168:30010/ChatService");
-            rmiChatService.updateChatRemote(userLogin, userReceiver, content);
+            if (localhost.getHostAddress().equals("10.4.1.96")) {
+                RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming
+                        .lookup("rmi://34.42.147.168:30007/ChatService");
+                rmiChatService.updateChatRemote(userLogin, userReceiver, content);
+            } else {
+                RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming
+                        .lookup("rmi://34.42.147.168:30010/ChatService");
+                rmiChatService.updateChatRemote(userLogin, userReceiver, content);
+            }
         } catch (MalformedURLException | RemoteException | NotBoundException | UnknownHostException e) {
             try {
                 RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming

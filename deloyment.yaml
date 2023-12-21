@@ -76,7 +76,7 @@ spec:
     spec:
       containers:
       - name: app-container
-        image: huy21it490/chatservice4:latest
+        image: huy21it490/chatservice5:latest
         imagePullPolicy: Always
         ports:
           - containerPort: 12345
@@ -116,7 +116,7 @@ spec:
     spec:
       containers:
       - name: app-container
-        image: huy21it490/chatservice4:latest
+        image: huy21it490/chatservice5:latest
         imagePullPolicy: Always
         ports:
           - containerPort: 12345

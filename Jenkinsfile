@@ -22,9 +22,9 @@ pipeline {
 
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker build -t huy21it490/chatservice4:latest --platform linux/amd64 .'
-                    sh 'docker push huy21it490/chatservice4:latest'
-                    sh 'docker rmi -f huy21it490/chatservice4:latest'
+                    sh 'docker build -t huy21it490/chatservice5:latest --platform linux/amd64 .'
+                    sh 'docker push huy21it490/chatservice5:latest'
+                    sh 'docker rmi -f huy21it490/chatservice5:latest'
                 }
             }
         }
