@@ -7,10 +7,16 @@ spec:
   selector:
     app: mychatservice1
   ports:
-  - protocol: TCP
+  - name: socket-chat
+    protocol: TCP
     port: 80       # Port trên dịch vụ (external port)
     targetPort: 12345  # Port trên các pod (internal port)
     nodePort: 30003   # NodePort (30000-32767)
+  - name: rmi-chat
+    protocol: TCP
+    port: 90  # Một port khác
+    targetPort: 3099  # Port trên các pod (internal port) tương ứng với port mới
+    nodePort: 30010  #
   type: NodePort     # Kiểu dịch vụ là NodePort
 ---
 apiVersion: v1
@@ -22,10 +28,16 @@ spec:
   selector:
     app: mychatservice2
   ports:
-  - protocol: TCP
+  - name: socket-chat2
+    protocol: TCP
     port: 80       # Port trên dịch vụ (external port)
     targetPort: 12345  # Port trên các pod (internal port)
     nodePort: 30006  # NodePort (30000-32767)
+  - name: rmi-chat2
+    protocol: TCP
+    port: 90  # Một port khác
+    targetPort: 3099  # Port trên các pod (internal port) tương ứng với port mới
+    nodePort: 30007 
   type: NodePort     # Kiểu dịch vụ là NodePort
 
 

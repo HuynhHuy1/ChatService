@@ -30,39 +30,46 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ChatController {
     private Client client;
-    private List<Client>  listClient;
+    private List<Client> listClient;
     private String userReceiver;
 
-
-    public Client getClientReceiver(){
+    public Client getClientReceiver() {
         for (Client client : listClient) {
-            if(client.getUserName().equals(userReceiver)){
+            if (client.getUserName().equals(userReceiver)) {
                 return client;
             }
         }
         return null;
     }
 
-    public void handleChat(String message) throws IOException{
+    public void handleChat(String message) throws IOException {
         Client clientReceiver = this.getClientReceiver();
-        if(clientReceiver != null){
-            ResponseUtil responseUtil= new ResponseUtil(clientReceiver.getSocket());
+        if (clientReceiver != null) {
+            ResponseUtil responseUtil = new ResponseUtil(clientReceiver.getSocket());
             System.out.println(message);
             System.out.println(clientReceiver.getUserName());
             responseUtil.redirectMessageClient(message);
         }
     }
-    public void addMessage(int userLogin, int userReceiver,String content){
+
+    public void addMessage(int userLogin, int userReceiver, String content) {
         int conversationId = ConversationRepository.getConversationId(userLogin, userReceiver);
         System.out.println(conversationId);
-        MessageRepository.addNewMessage(conversationId, userLogin,content);
+        MessageRepository.addNewMessage(conversationId, userLogin, content);
         try {
             List<String> urlServer = new ArrayList<>();
             InetAddress localhost = InetAddress.getLocalHost();
             System.out.println("IP của máy chủ 2: " + localhost.getHostAddress());
-            RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming.lookup("rmi://34.42.147.168:3099/ChatService");
+            RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming
+                    .lookup("rmi://34.42.147.168:30005/ChatService");
             rmiChatService.updateChatRemote(userLogin, userReceiver, content);
         } catch (MalformedURLException | RemoteException | NotBoundException | UnknownHostException e) {
+            try {
+                RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming
+                        .lookup("rmi://34.42.147.168:30007/ChatService");
+                rmiChatService.updateChatRemote(userLogin, userReceiver, content);
+            } catch (MalformedURLException | RemoteException | NotBoundException alternativeException) {
+            }
             e.printStackTrace();
         }
     }
