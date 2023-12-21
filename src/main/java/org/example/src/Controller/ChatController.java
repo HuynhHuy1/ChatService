@@ -17,6 +17,7 @@ import org.example.src.Model.Response;
 import org.example.src.Repository.ConversationRepository;
 import org.example.src.Repository.MessageRepository;
 import org.example.src.Utils.ResponseUtil;
+import org.example.src.rmi.RMIChatService;
 import org.example.src.rmi.RMIChatServiceInterface;
 
 import lombok.AllArgsConstructor;
@@ -52,20 +53,22 @@ public class ChatController {
             responseUtil.redirectMessageClient(message);
         }
     }
-    public void addMessage(int userLogin, int userReceiver,String content){
+    public void addMessage(int userLogin, int userReceiver,String content) throws RemoteException{
         int conversationId = ConversationRepository.getConversationId(userLogin, userReceiver);
         System.out.println(conversationId);
         MessageRepository.addNewMessage(conversationId, userLogin,content);
-        try {
-            List<String> urlServer = new ArrayList<>();
-            urlServer.add("34.143.232.173");
-            urlServer.add("34.87.171.195");
-            InetAddress localhost = InetAddress.getLocalHost();
-            System.out.println("IP của máy chủ: " + localhost.getHostAddress());
-            RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming.lookup("rmi://192.168.1.132:3099/ChatService");
-            rmiChatService.updateChatRemote(userLogin, userReceiver, content);
-        } catch (MalformedURLException | RemoteException | NotBoundException | UnknownHostException e) {
-            e.printStackTrace();
-        }
+        RMIChatService rmiChatService = new RMIChatService();
+        rmiChatService.updateChatRemote(userLogin, userReceiver, content);
+        // try {
+        //     List<String> urlServer = new ArrayList<>();
+        //     urlServer.add("34.143.232.173");
+        //     urlServer.add("34.87.171.195");
+        //     InetAddress localhost = InetAddress.getLocalHost();
+        //     System.out.println("IP của máy chủ: " + localhost.getHostAddress());
+        //     RMIChatServiceInterface rmiChatService = (RMIChatServiceInterface) Naming.lookup("rmi://172.30.64.1:3099/ChatService");
+        //     rmiChatService.updateChatRemote(userLogin, userReceiver, content);
+        // } catch (MalformedURLException | RemoteException | NotBoundException | UnknownHostException e) {
+        //     e.printStackTrace();
+        // }
     }
 }

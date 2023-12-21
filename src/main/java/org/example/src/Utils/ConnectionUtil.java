@@ -11,7 +11,8 @@ public class ConnectionUtil {
 
         System.out.println(url);
         String username = "root";
-        String password = "root";
+        String password = "";
+        // String password = "root";
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
             System.out.println("ket noi thanh cong");

@@ -3,6 +3,7 @@ package org.example.src.Controller;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -31,7 +32,9 @@ public class ConversationController {
     public void getListConversation(int id) {
         try {
             System.setProperty("sun.rmi.transport.tcp.responseTimeout", "5000");
-            RMIServiceInterface iAccount = (RMIServiceInterface) Naming.lookup("rmi://34.27.129.228:30005/RMIService");
+            InetAddress localhost = InetAddress.getLocalHost();
+            System.out.println("IP của localhost: " + localhost.getHostAddress());
+            RMIServiceInterface iAccount = (RMIServiceInterface) Naming.lookup("rmi://34.42.147.168:30005/RMIService");
             List<Integer> listUserId = ConversationRepository.getConversations(id);
             out = new ObjectOutputStream(socket.getOutputStream());
             List<User> listUser = iAccount.getListUserByListId(listUserId);
