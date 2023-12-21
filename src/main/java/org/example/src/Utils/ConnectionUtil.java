@@ -15,7 +15,7 @@ public class ConnectionUtil {
         String password = "root";
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
-            System.out.println("ket noi thanh cong");
+            System.out.println("ket noi thanh cong 1");
             return connection;
         } catch (SQLException e) {
             System.err.println("Lỗi kết nối đến MySQL: " + e.getMessage());
