@@ -33,7 +33,7 @@ public class ConversationController {
         try {
             System.setProperty("sun.rmi.transport.tcp.responseTimeout", "5000");
             InetAddress localhost = InetAddress.getLocalHost();
-            System.out.println("IP của localhost: " + localhost.getHostAddress());
+            System.out.println("IP của localhost: 1 " + localhost.getHostAddress());
             RMIServiceInterface iAccount = (RMIServiceInterface) Naming.lookup("rmi://34.42.147.168:30005/RMIService");
             List<Integer> listUserId = ConversationRepository.getConversations(id);
             out = new ObjectOutputStream(socket.getOutputStream());
