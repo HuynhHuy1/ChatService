@@ -7,7 +7,6 @@ WORKDIR /app
 COPY ./src ./src
 COPY ./pom.xml ./
 
-
 CMD mvn clean package && java -jar target/chatservice-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 EXPOSE 12345
