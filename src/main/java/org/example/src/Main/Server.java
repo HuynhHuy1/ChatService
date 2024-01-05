@@ -25,7 +25,7 @@ public class Server {
 	private ServerSocket server;
 
 	public static void main(String[] args) throws IOException {
-		Thread thread = new Thread() {
+		Thr thread = new Thread() {
 			public void run() {
 				try {
 					RMIChatServiceInterface chatService = new RMIChatService();

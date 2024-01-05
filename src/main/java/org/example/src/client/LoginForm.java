@@ -19,7 +19,7 @@ public class LoginForm extends JFrame {
         add(panel);
 
         JLabel usernameLabel = new JLabel("Username:");
-        panel.ad(usernameLabel);
+        panel.add(usernameLabel);
 
         usernameField = new JTextField();
         panel.add(usernameField);
