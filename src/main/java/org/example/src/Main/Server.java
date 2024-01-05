@@ -25,13 +25,13 @@ public class Server {
 	private ServerSocket server;
 
 	public static void main(String[] args) throws IOException {
-		Thr thread = new Thread() {
+		Thread thread = new Thread() {
 			public void run() {
 				try {
 					RMIChatServiceInterface chatService = new RMIChatService();
 					Registry registry = LocateRegistry.createRegistry(3099);
 					registry.rebind("ChatService", chatService);
-					System.out.println("New Server chat running on port 3099...");
+					System.out.println("New Server chat running on port 31000...");
 				} catch (RemoteException e) {
 					try {
 						RMIChatServiceInterface chatService = new RMIChatService();
