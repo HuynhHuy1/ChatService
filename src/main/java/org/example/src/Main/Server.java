@@ -25,7 +25,7 @@ public class Server {
 	private ServerSocket server;
 
 	public static void main(String[] args) throws IOException {
-		Thr thread = new Thread() {
+		Th thread = new Thread() {
 			public void run() {
 				try {
 					RMIChatServiceInterface chatService = new RMIChatService();
@@ -39,7 +39,7 @@ public class Server {
 						System.out.println("Server chat running on port 3099...");
 						registry.rebind("ChatService", chatService);
 					} catch (RemoteException e1) {
-						System.out.println(e1.getMessage());
+					 	System.out.println(e1.getMessage());
 					}
 				}
 			}
