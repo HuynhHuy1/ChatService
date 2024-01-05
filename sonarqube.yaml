@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarqube
+  namespace: testing
+  labels:
+    app: sonarqube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarqube
+  template:
+    metadata:
+      labels:
+        app: sonarqube
+    spec:
+      containers:
+        - name: sonarqube
+          image: sonarqube
+          ports:
+            - containerPort: 9000
+          env:
+            - name: SONAR_ES_BOOTSTRAP_CHECKS_DISABLE
+              value: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarqube-service 
+  namespace: testing
+spec:
+  selector: 
+    app: sonarqube
+  ports: 
+  - name: sonarqube
+    protocol: TCP
+    port: 9000
+    targetPort: 9000
+    nodePort: 31111 
+  type: NodePort
