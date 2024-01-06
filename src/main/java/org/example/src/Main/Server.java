@@ -31,7 +31,7 @@ public class Server {
 					RMIChatServiceInterface chatService = new RMIChatService();
 					Registry registry = LocateRegistry.createRegistry(3099);
 					registry.rebind("ChatService", chatService);
-					System.out.println("New Server chat running on port 310002 ...");
+					System.out.println("New Server chat running on port 3100022 ...");
 				} catch (RemoteException e) {
 					try {
 						RMIChatServiceInterface chatService = new RMIChatService();
