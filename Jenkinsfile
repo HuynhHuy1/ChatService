@@ -29,20 +29,6 @@ pipeline {
             }
         }
 
-        // stage('Test with Sonarqube') {
-        //     steps {
-        //         script {
-        //             def scannerHome = tool 'SonarQubeScanner'
-        //             echo "SonarScanner Home: ${scannerHome}"  // In ra giá trị của biến scannerHome
-        //              withSonarQubeEnv('sonarqube') {
-        //                 sh "${scannerHome}/bin/sonar-scanner -X"
-        //             }
-        //         }
-        //     }
-        // }
-
-
-
         stage('Packaging/Pushing imagae') {
 
             steps {
