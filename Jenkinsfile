@@ -17,17 +17,23 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Test with Sonarqube') {
-            steps {
-                script {
-                    def scannerHome = tool 'SonarQubeScanner'
-                    echo "SonarScanner Home: ${scannerHome}"  // In ra giá trị của biến scannerHome
-                    withSonarQubeEnv('sonarqube') {
-                        sh "${scannerHome}/bin/sonar-scanner -X"
-                    }
+          stage('SonarQube Analysis') {
+                def mvn = tool 'maven-tool';
+                withSonarQubeEnv() {
+                sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=firstDemo -Dsonar.projectName='firstDemo'"
                 }
             }
-        }
+        // stage('Test with Sonarqube') {
+        //     steps {
+        //         script {
+        //             def scannerHome = tool 'SonarQubeScanner'
+        //             echo "SonarScanner Home: ${scannerHome}"  // In ra giá trị của biến scannerHome
+        //              ('sonarqube') {
+        //                 sh "${scannerHome}/bin/sonar-scanner -X"
+        //             }
+        //         }
+        //     }
+        // }
 
 
 
