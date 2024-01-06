@@ -17,6 +17,16 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Test with Sonarqube'){
+            steps {
+                script {
+                    def scannerHome = tool 'SonarQubeScanner'
+                    withSonarQubeEnv('sonarqube') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
 
         stage('Packaging/Pushing imagae') {
 

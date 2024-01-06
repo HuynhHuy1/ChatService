@@ -117,7 +117,7 @@ spec:
       containers:
       - name: app-container
         image: huy21it490/chatservice-1:latest
-        imagePullPolicy: Always
+        imagePulclPolicy: Always
         ports:
           - containerPort: 12345
       - name: db-container
