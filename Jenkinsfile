@@ -22,9 +22,9 @@ pipeline {
                 script {
                     def scannerHome = tool 'SonarQubeScanner'
                     echo "SonarScanner Home: ${scannerHome}"  // In ra giá trị của biến scannerHome
-                    withSonarQubeEnv('sonarqube') {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
+                    // withSonarQubeEnv('sonarqube') {
+                    //     // sh "${scannerHome}/bin/sonar-scanner"
+                    // }
                 }
             }
         }
