@@ -18,10 +18,13 @@ pipeline {
             }
         }
           stage('SonarQube Analysis') {
+            steps{
                 def mvn = tool 'maven-tool';
                 withSonarQubeEnv('sonarqube') {
                 sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=firstDemo -Dsonar.projectName='firstDemo'"
                 }
+            }
+
             }
         // stage('Test with Sonarqube') {
         //     steps {
