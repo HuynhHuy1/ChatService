@@ -17,16 +17,18 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Test with Sonarqube'){
+        stage('Test with Sonarqube') {
             steps {
                 script {
-                    // def scannerHome = tool 'SonarQubeScanner'
+                    def scannerHome = tool 'SonarQubeScanner'
+                    echo "SonarScanner Home: ${scannerHome}"  // In ra giá trị của biến scannerHome
                     withSonarQubeEnv('sonarqube') {
-                        sh "bin/sonar-scanner"
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
         }
+
 
         stage('Packaging/Pushing imagae') {
 
