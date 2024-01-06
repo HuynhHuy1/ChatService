@@ -17,7 +17,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        
+
         stage('Test with Sonarqube') {
             steps {
                 script {
@@ -28,7 +28,6 @@ pipeline {
                 }
             }
         }
-
 
         // stage('Test with Sonarqube') {
         //     steps {
